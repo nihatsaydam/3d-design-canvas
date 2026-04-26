@@ -57,14 +57,18 @@ export default function SiteHeader({ credits = 1280 }: { credits?: number }) {
             </Button>
           </Link>
 
-          <Button variant="ghost" className="h-9 text-muted-foreground hover:text-foreground hover:bg-surface-2">
-            Log in
-          </Button>
-          <Button
-            className="h-9 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.35)]"
-          >
-            Sign up
-          </Button>
+          <Link to="/login">
+            <Button variant="ghost" className="h-9 text-muted-foreground hover:text-foreground hover:bg-surface-2">
+              Log in
+            </Button>
+          </Link>
+          <Link to="/signup">
+            <Button
+              className="h-9 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.35)]"
+            >
+              Sign up
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
