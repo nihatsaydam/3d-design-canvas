@@ -146,44 +146,43 @@
    Editor stays dark.
    ============================================ */
 .theme-site {
-  /* Warm ivory paper background, deep navy ink */
-  --background: 36 30% 96%;
-  --foreground: 220 30% 14%;
+  /* Bright airy off-white, cool neutral, deep slate ink */
+  --background: 0 0% 100%;
+  --foreground: 222 25% 12%;
 
-  --surface-0: 36 25% 98%;
-  --surface-1: 36 24% 94%;
-  --surface-2: 34 22% 90%;
-  --surface-3: 32 20% 85%;
+  --surface-0: 0 0% 100%;
+  --surface-1: 220 20% 98%;
+  --surface-2: 220 16% 95%;
+  --surface-3: 220 14% 91%;
 
   --card: 0 0% 100%;
-  --card-foreground: 220 30% 14%;
+  --card-foreground: 222 25% 12%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 220 30% 14%;
+  --popover-foreground: 222 25% 12%;
 
-  /* Keep brand red but slightly deeper for contrast on light bg */
-  --primary: 0 72% 48%;
+  --primary: 0 75% 52%;
   --primary-foreground: 0 0% 100%;
-  --primary-glow: 0 85% 60%;
+  --primary-glow: 0 88% 62%;
 
-  --secondary: 36 22% 92%;
-  --secondary-foreground: 220 30% 18%;
+  --secondary: 220 16% 96%;
+  --secondary-foreground: 222 25% 16%;
 
-  --muted: 36 20% 92%;
-  --muted-foreground: 220 12% 42%;
+  --muted: 220 16% 96%;
+  --muted-foreground: 220 10% 46%;
 
-  --accent: 36 22% 90%;
-  --accent-foreground: 220 30% 18%;
+  --accent: 220 16% 95%;
+  --accent-foreground: 222 25% 16%;
 
   --neon: 160 70% 38%;
   --neon-foreground: 0 0% 100%;
 
-  --destructive: 0 75% 50%;
+  --destructive: 0 75% 52%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 30 18% 86%;
-  --input: 30 18% 88%;
-  --ring: 0 72% 48%;
+  --border: 220 16% 90%;
+  --input: 220 16% 92%;
+  --ring: 0 75% 52%;
 
   color-scheme: light;
 }

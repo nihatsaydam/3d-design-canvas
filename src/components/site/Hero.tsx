@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, Wand2, Layers, Play } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-bg.jpg";
+import charHD from "@/assets/hero-char-1.png";
+import charMesh from "@/assets/hero-char-2.png";
 
-const ROTATING = ["worlds", "creatures", "vehicles", "characters", "props"];
+const ROTATING = ["Worlds", "Creatures", "Vehicles", "Characters", "Props"];
 
 export default function Hero() {
   const [idx, setIdx] = useState(0);
@@ -16,54 +17,29 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden">
-      {/* BG */}
-      <div className="absolute inset-0 -z-10">
-        <img
-          src={heroBg}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
-          width={1920}
-          height={1080}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.18),transparent_55%)]" />
-
-        {/* Floating animated orbs */}
-        <motion.div
-          aria-hidden
-          className="absolute top-1/4 left-[10%] h-72 w-72 rounded-full bg-primary/20 blur-3xl"
-          animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          aria-hidden
-          className="absolute bottom-1/4 right-[12%] h-80 w-80 rounded-full bg-neon/10 blur-3xl"
-          animate={{ y: [0, -40, 0], x: [0, -25, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Subtle grid */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:48px_48px]"
-        />
+    <section className="relative overflow-hidden bg-background">
+      {/* Soft ambient background */}
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(220_60%_96%),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(0_80%_96%),transparent_55%)]" />
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 pt-24 pb-32 md:pt-32 md:pb-40">
+      <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 md:pt-28">
+        {/* Centered headline */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-3xl"
+          className="text-center max-w-4xl mx-auto"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-xs font-mono uppercase tracking-widest text-primary">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface-1 text-xs font-mono uppercase tracking-widest text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            New — Engine v2 with AI Sculpt
+            Engine v2 — AI Sculpt
           </span>
 
-          <h1 className="mt-6 text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
-            Sculpt{" "}
+          <h1 className="mt-6 text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
+            Generate{" "}
             <span className="relative inline-block align-baseline text-primary">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -77,83 +53,110 @@ export default function Hero() {
                   {ROTATING[idx]}
                 </motion.span>
               </AnimatePresence>
-            </span>
-            ,
-            <br /> not just <span className="italic font-serif font-normal">meshes.</span>
+            </span>{" "}
+            in 3D
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed"
-          >
-            CRUDE 3D is an AI-native sculpting & rendering studio. Generate concept-ready
-            assets in seconds, refine them with a real-time engine, and publish your gallery
-            — all from one elegant workspace.
-          </motion.p>
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Your all-in-one AI 3D workspace. Sculpt, retopologize and publish
+            production-ready assets — from a single elegant studio.
+          </p>
+        </motion.div>
 
+        {/* Two big showcase cards — Tripo3D style */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
+          }}
+          className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5"
+        >
+          {/* Card 1 — HD Model */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
+            whileHover={{ y: -6 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            className="group relative overflow-hidden rounded-3xl min-h-[420px] md:min-h-[460px] shadow-[0_30px_80px_-30px_hsl(220_60%_30%/0.35)]"
+            style={{
+              background:
+                "linear-gradient(135deg, hsl(220 80% 58%) 0%, hsl(230 70% 38%) 100%)",
+            }}
           >
-            <Link to="/edit">
-              <Button
-                size="lg"
-                className="h-12 px-6 bg-primary hover:bg-primary/90 text-primary-foreground gap-2 shadow-[0_0_30px_hsl(var(--primary)/0.45)]"
-              >
-                Launch Editor
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link to="/gallery">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-12 px-6 bg-surface-1/60 border-border text-foreground hover:bg-surface-2"
-              >
-                Browse Gallery
-              </Button>
-            </Link>
-            <button className="h-12 inline-flex items-center gap-2 px-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
-              <span className="grid place-items-center h-9 w-9 rounded-full border border-border bg-surface-1 group-hover:bg-surface-2">
-                <Play className="h-3.5 w-3.5 fill-foreground" />
-              </span>
-              Watch the 90s tour
-            </button>
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay [background-image:radial-gradient(circle_at_30%_20%,white,transparent_55%)]" />
+            <img
+              src={charHD}
+              alt="High detail 3D character"
+              className="absolute -bottom-2 -left-4 md:-left-8 h-[88%] md:h-[95%] w-auto object-contain pointer-events-none drop-shadow-[0_30px_30px_rgba(0,0,0,0.45)] transition-transform duration-700 group-hover:scale-[1.03]"
+              loading="eager"
+            />
+            <div className="relative h-full flex flex-col justify-between p-7 md:p-9 ml-auto md:w-[55%]">
+              <div className="flex items-center gap-2 self-end text-white/90 text-xs font-mono uppercase tracking-widest">
+                <Sparkles className="h-3.5 w-3.5" />
+                Featured
+              </div>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                  High Detail Model
+                </h2>
+                <p className="mt-3 text-white/80 text-sm md:text-base leading-relaxed">
+                  Up to 2M polygons for 3D printing & visual arts.
+                </p>
+                <Link to="/edit" className="inline-block mt-6">
+                  <Button
+                    size="lg"
+                    className="h-12 px-6 rounded-full bg-white text-[hsl(230_70%_38%)] hover:bg-white/95 gap-2 font-semibold shadow-lg"
+                  >
+                    Generate HD Model
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Feature chips */}
+          {/* Card 2 — Smart Topology */}
           <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.08, delayChildren: 0.4 } },
+            variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
+            whileHover={{ y: -6 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            className="group relative overflow-hidden rounded-3xl min-h-[420px] md:min-h-[460px] shadow-[0_30px_80px_-30px_hsl(20_70%_30%/0.35)]"
+            style={{
+              background:
+                "linear-gradient(135deg, hsl(18 85% 58%) 0%, hsl(8 75% 42%) 100%)",
             }}
-            className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl"
           >
-            {[
-              { icon: Wand2, label: "Text → 3D", sub: "Prompt to mesh in <30s" },
-              { icon: Layers, label: "Live Sculpt", sub: "Real-time PBR engine" },
-              { icon: Sparkles, label: "AI Retopology", sub: "Production-ready geo" },
-            ].map((f) => (
-              <motion.div
-                key={f.label}
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  show: { opacity: 1, y: 0 },
-                }}
-                whileHover={{ y: -4 }}
-                className="rounded-xl border border-border bg-surface-1/70 backdrop-blur-sm p-4 hover:border-primary/40 transition-colors"
-              >
-                <f.icon className="h-5 w-5 text-primary" />
-                <div className="mt-2 text-sm font-semibold text-foreground">{f.label}</div>
-                <div className="text-xs text-muted-foreground">{f.sub}</div>
-              </motion.div>
-            ))}
+            <div className="absolute inset-0 opacity-25 mix-blend-overlay [background-image:radial-gradient(circle_at_70%_20%,white,transparent_55%)]" />
+            <img
+              src={charMesh}
+              alt="3D wireframe topology"
+              className="absolute -bottom-2 -right-4 md:-right-8 h-[88%] md:h-[95%] w-auto object-contain pointer-events-none drop-shadow-[0_30px_30px_rgba(0,0,0,0.4)] transition-transform duration-700 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+            <div className="relative h-full flex flex-col justify-between p-7 md:p-9 md:w-[55%]">
+              <div className="flex items-center gap-2 text-white/90 text-xs font-mono uppercase tracking-widest">
+                <Sparkles className="h-3.5 w-3.5" />
+                Production Ready
+              </div>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                  Smart Topology Mesh
+                </h2>
+                <p className="mt-3 text-white/85 text-sm md:text-base leading-relaxed">
+                  ~2s clean retopology for games & web apps.
+                </p>
+                <Link to="/edit" className="inline-block mt-6">
+                  <Button
+                    size="lg"
+                    className="h-12 px-6 rounded-full bg-white text-[hsl(8_75%_42%)] hover:bg-white/95 gap-2 font-semibold shadow-lg"
+                  >
+                    Generate Smart Mesh
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
