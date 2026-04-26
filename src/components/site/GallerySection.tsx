@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
-import { Heart, Eye, Download } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Heart, Bookmark, SlidersHorizontal, LayoutGrid, Printer, Star,
+  User, Car, Cat, Building2, Sofa, Box, Sword, Shirt, Cog, UtensilsCrossed, Trees, Bone, Plus,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import shopImg from "@/assets/shop-card.jpg";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
@@ -9,128 +15,200 @@ import g6 from "@/assets/gallery-6.jpg";
 import g7 from "@/assets/gallery-7.jpg";
 import g8 from "@/assets/gallery-8.jpg";
 
-type Category = "All" | "Characters" | "Creatures" | "Vehicles" | "Props" | "Objects";
+type Cat =
+  | "All" | "Featured" | "3D Print" | "Character" | "Vehicle" | "Animal"
+  | "Architecture" | "Furniture" | "Object" | "Weapon" | "Outfit"
+  | "Mechanical" | "Food" | "Nature" | "Skeleton";
+
+const CATEGORIES: { key: Cat; icon: any }[] = [
+  { key: "All", icon: LayoutGrid },
+  { key: "3D Print", icon: Printer },
+  { key: "Featured", icon: Star },
+  { key: "Character", icon: User },
+  { key: "Vehicle", icon: Car },
+  { key: "Animal", icon: Cat },
+  { key: "Architecture", icon: Building2 },
+  { key: "Furniture", icon: Sofa },
+  { key: "Object", icon: Box },
+  { key: "Weapon", icon: Sword },
+  { key: "Outfit", icon: Shirt },
+  { key: "Mechanical", icon: Cog },
+  { key: "Food", icon: UtensilsCrossed },
+  { key: "Nature", icon: Trees },
+  { key: "Skeleton", icon: Bone },
+];
 
 interface Item {
   id: number;
   title: string;
   author: string;
-  category: Exclude<Category, "All">;
+  cats: Cat[];
   img: string;
   likes: number;
-  views: string;
-  tag?: string;
+  avatar?: string;
 }
 
 const ITEMS: Item[] = [
-  { id: 1, title: "Oni Samurai Helmet", author: "kaito.r", category: "Characters", img: g1, likes: 1240, views: "12.4k", tag: "Featured" },
-  { id: 2, title: "Crimson Wyrm",       author: "vex.studio", category: "Creatures", img: g2, likes: 982, views: "9.1k" },
-  { id: 3, title: "GT-X Concept",       author: "northpaw", category: "Vehicles", img: g3, likes: 1573, views: "18.7k", tag: "Trending" },
-  { id: 4, title: "Mochi Bot Mk.II",    author: "yuna.io", category: "Characters", img: g4, likes: 712, views: "5.8k" },
-  { id: 5, title: "Runeblade Aether",   author: "forge.lab", category: "Props", img: g5, likes: 1102, views: "10.2k" },
-  { id: 6, title: "Voyager Helm",       author: "drift.fx", category: "Characters", img: g6, likes: 845, views: "7.4k" },
-  { id: 7, title: "Loot Crate Stylized",author: "pix.guild", category: "Props", img: g7, likes: 433, views: "3.1k" },
-  { id: 8, title: "Shell Lounge Chair", author: "nori.lab", category: "Objects", img: g8, likes: 661, views: "4.9k", tag: "Editor's Pick" },
+  { id: 1, title: "Oni Samurai Helmet",  author: "kaito.r",            cats: ["Character", "Featured"], img: g1, likes: 109 },
+  { id: 2, title: "Crimson Wyrm",        author: "vex.studio",         cats: ["Animal", "Featured"],    img: g2, likes: 76 },
+  { id: 3, title: "GT-X Concept",        author: "northpaw",           cats: ["Vehicle", "Featured"],   img: g3, likes: 36 },
+  { id: 4, title: "Mochi Bot Mk.II",     author: "yuna.io",            cats: ["Character", "3D Print"], img: g4, likes: 73 },
+  { id: 5, title: "Runeblade Aether",    author: "forge.lab",          cats: ["Weapon", "Featured"],    img: g5, likes: 46 },
+  { id: 6, title: "Voyager Helm",        author: "drift.fx",           cats: ["Character", "Outfit"],   img: g6, likes: 88 },
+  { id: 7, title: "Loot Crate Stylized", author: "pix.guild",          cats: ["Object", "3D Print"],    img: g7, likes: 41 },
+  { id: 8, title: "Shell Lounge Chair",  author: "nori.lab",           cats: ["Furniture", "Featured"], img: g8, likes: 62 },
+  { id: 9, title: "Tundra Drake",        author: "aristo.k",           cats: ["Animal"],                img: g2, likes: 73 },
+  { id:10, title: "Mech Scorpion",       author: "anonymous772",       cats: ["Mechanical"],            img: g1, likes: 46 },
 ];
 
-const CATEGORIES: Category[] = ["All", "Characters", "Creatures", "Vehicles", "Props", "Objects"];
+interface Props {
+  /** Embedded teaser (8 items) on landing — true. Standalone /gallery — false. */
+  preview?: boolean;
+}
 
-export default function GallerySection() {
-  const [active, setActive] = useState<Category>("All");
+export default function GallerySection({ preview = false }: Props) {
+  const [active, setActive] = useState<Cat>("All");
 
-  const filtered = useMemo(
-    () => (active === "All" ? ITEMS : ITEMS.filter((i) => i.category === active)),
-    [active],
-  );
+  const filtered = useMemo(() => {
+    const list = active === "All" ? ITEMS : ITEMS.filter((i) => i.cats.includes(active));
+    return preview ? list.slice(0, 8) : list;
+  }, [active, preview]);
 
   return (
     <section id="gallery" className="relative">
       <div className="mx-auto max-w-7xl px-6 py-20">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-primary">/ community</span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold tracking-tight">
-              Made in CRUDE 3D
-            </h2>
-            <p className="mt-2 text-muted-foreground max-w-xl">
-              A curated showcase of recent works from our community of artists, sculptors and tinkerers.
-            </p>
+        {/* Header row — Tripo-style toolbar */}
+        <div className="flex items-center gap-4 mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mr-2">Gallery</h2>
+
+          <button className="inline-flex items-center gap-2 h-9 px-4 rounded-full border border-border bg-surface-1 hover:bg-surface-2 text-sm">
+            <SlidersHorizontal className="h-4 w-4" /> Filters
+          </button>
+
+          {/* Scrollable category bar */}
+          <div className="flex-1 min-w-0 overflow-x-auto scrollbar-thin">
+            <div className="flex items-center gap-2 w-max">
+              {CATEGORIES.map(({ key, icon: Icon }) => {
+                const isActive = key === active;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setActive(key)}
+                    className={`inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-xs font-medium border whitespace-nowrap transition-all ${
+                      isActive
+                        ? "bg-foreground text-background border-foreground"
+                        : "bg-surface-1 border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
+                    }`}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    {key}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Category filter */}
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((c) => {
-              const isActive = c === active;
-              return (
-                <button
-                  key={c}
-                  onClick={() => setActive(c)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all ${
-                    isActive
-                      ? "bg-primary text-primary-foreground border-primary shadow-[0_0_18px_hsl(var(--primary)/0.4)]"
-                      : "bg-surface-1 border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
-                  }`}
-                >
-                  {c}
-                </button>
-              );
-            })}
-          </div>
+          <button className="ml-auto hidden md:inline-flex items-center gap-2 h-9 px-4 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-[0_0_18px_hsl(var(--primary)/0.4)]">
+            <Plus className="h-3.5 w-3.5" /> Feature My Model
+            <span className="ml-1 px-1.5 py-0.5 rounded bg-background/20 text-[10px] font-mono">+10</span>
+          </button>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {filtered.map((item, idx) => (
-            <article
-              key={item.id}
-              className={`group relative rounded-xl overflow-hidden border border-border bg-surface-1 hover:border-primary/40 transition-all hover:-translate-y-1 ${
-                idx === 0 ? "sm:col-span-2 sm:row-span-2" : ""
-              }`}
-            >
-              <div className={`relative ${idx === 0 ? "aspect-square sm:aspect-auto sm:h-full" : "aspect-square"} overflow-hidden`}>
+        {/* Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
+        >
+          {/* Featured Shop tile (only on All) */}
+          <AnimatePresence>
+            {active === "All" && (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.3 }}
+                className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border border-border bg-surface-1 group"
+              >
                 <img
-                  src={item.img}
-                  alt={item.title}
+                  src={shopImg}
+                  alt="CRUDE Shop"
                   loading="lazy"
-                  width={768}
+                  width={1024}
                   height={768}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent opacity-90" />
-
-                {item.tag && (
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] uppercase tracking-widest font-mono bg-primary/90 text-primary-foreground backdrop-blur-sm">
-                    {item.tag}
-                  </span>
-                )}
-
-                <span className="absolute top-3 right-3 px-2 py-1 rounded-md text-[10px] uppercase tracking-widest font-mono bg-black/60 text-foreground/90 backdrop-blur-sm border border-white/10">
-                  {item.category}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-foreground/95 text-background text-[10px] uppercase tracking-widest font-mono">
+                  Shop
                 </span>
-
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <div className="flex items-end justify-between gap-3">
-                    <div className="min-w-0">
-                      <h3 className="text-sm md:text-base font-semibold text-foreground truncate">{item.title}</h3>
-                      <p className="text-xs text-muted-foreground">@{item.author}</p>
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-foreground/80">
-                      <span className="inline-flex items-center gap-1"><Heart className="h-3.5 w-3.5 text-primary" /> {item.likes}</span>
-                      <span className="inline-flex items-center gap-1"><Eye className="h-3.5 w-3.5" /> {item.views}</span>
-                    </div>
+                <div className="absolute inset-x-5 bottom-5">
+                  <div className="text-2xl md:text-3xl font-extrabold leading-tight">
+                    <span className="text-yellow-400">3D FULL-COLORED</span>{" "}
+                    <span className="text-foreground">PRINTING</span>
                   </div>
+                  <button className="mt-3 inline-flex h-9 px-4 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-[0_0_18px_hsl(var(--primary)/0.4)]">
+                    Try it NOW!
+                  </button>
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-                {/* Hover action */}
-                <button
-                  className="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 inline-flex items-center justify-center gap-2 h-9 rounded-md bg-foreground/95 text-background text-xs font-semibold backdrop-blur-sm hover:bg-foreground"
-                  aria-label={`Download ${item.title}`}
-                >
-                  <Download className="h-3.5 w-3.5" /> Download .glb
-                </button>
+          {filtered.map((item, i) => (
+            <motion.article
+              layout
+              key={item.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.03 }}
+              whileHover={{ y: -3 }}
+              className="group relative aspect-square rounded-2xl overflow-hidden border border-border bg-surface-1 hover:border-primary/40 transition-colors"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                loading="lazy"
+                width={768}
+                height={768}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20" />
+
+              {/* Bookmark badge top-left */}
+              <button
+                aria-label="Bookmark"
+                className="absolute top-2.5 left-2.5 h-7 w-7 grid place-items-center rounded-md bg-black/55 backdrop-blur-sm border border-white/10 text-foreground/80 hover:text-primary"
+              >
+                <Bookmark className="h-3.5 w-3.5" />
+              </button>
+
+              {/* Author + likes (bottom strip) */}
+              <div className="absolute inset-x-0 bottom-0 p-3 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-primary/80 to-primary-glow shrink-0 grid place-items-center text-[10px] font-bold text-primary-foreground">
+                    {item.author[0].toUpperCase()}
+                  </div>
+                  <span className="text-xs text-foreground/90 truncate">{item.author}</span>
+                </div>
+                <span className="inline-flex items-center gap-1 text-xs text-foreground/90">
+                  <Heart className="h-3.5 w-3.5 text-primary fill-primary" /> {item.likes}
+                </span>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
+
+        {preview && (
+          <div className="mt-10 text-center">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-full border border-border bg-surface-1 hover:bg-surface-2 text-sm"
+            >
+              Explore the full gallery →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
