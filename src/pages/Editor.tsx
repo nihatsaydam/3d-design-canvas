@@ -13,7 +13,7 @@ const Editor = () => {
       <CommandBar />
       <div className="flex-1 flex min-h-0">
         <LeftToolbar />
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 relative flex flex-col min-w-0">
           <Viewport />
           <AIPanel />
         </div>
