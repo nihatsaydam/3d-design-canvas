@@ -128,8 +128,8 @@ export default function AIPanel() {
             {/* Body: history | chat */}
             <div className="flex-1 flex min-h-0">
               {/* History sidebar */}
-              <aside className="w-72 border-r border-border bg-surface-0/40 flex flex-col shrink-0">
-                <div className="p-3 border-b border-border space-y-2">
+              <aside className="w-64 border-r border-white/10 bg-white/[0.03] flex flex-col shrink-0">
+                <div className="p-3 border-b border-white/10 space-y-2">
                   <button className="w-full h-9 rounded-lg flex items-center justify-center gap-2 bg-primary/90 hover:bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wider transition-colors">
                     <Plus className="h-3.5 w-3.5" />
                     New chat
