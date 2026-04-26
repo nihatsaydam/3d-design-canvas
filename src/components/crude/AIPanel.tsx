@@ -66,37 +66,39 @@ export default function AIPanel() {
 
   return (
     <>
-      {/* Trigger bar — Ask AI Director */}
-      <div className="h-20 flex items-center justify-center px-4 border-t border-border bg-surface-1 shrink-0">
+      {/* Floating trigger — sits over the viewport, transparent backdrop */}
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
         <button
           onClick={() => setOpen(true)}
-          className="group relative h-12 px-6 rounded-full flex items-center gap-3 border transition-all hover:scale-[1.02]"
-          style={{
-            background: "var(--gradient-neon)",
-            borderColor: "hsl(var(--neon) / 0.5)",
-            boxShadow: "var(--shadow-glow-neon)",
-          }}
+          className="pointer-events-auto group h-10 px-5 rounded-full flex items-center gap-2.5 backdrop-blur-xl border border-neon/40 bg-background/30 hover:bg-background/45 hover:border-neon/70 hover:scale-[1.03] transition-all shadow-[0_8px_32px_hsl(var(--neon)/0.25)]"
         >
-          <Sparkles className="h-4 w-4 text-neon" />
-          <span className="label-neon text-xs uppercase tracking-[0.2em] font-semibold">
+          <Sparkles className="h-3.5 w-3.5 text-neon" />
+          <span className="label-neon text-[11px] uppercase tracking-[0.2em] font-semibold">
             Ask AI Director
           </span>
-          <span className="ml-2 px-2 py-0.5 rounded-full bg-background/40 text-[10px] uppercase tracking-widest text-muted-foreground border border-border/50">
+          <span className="px-1.5 py-0.5 rounded-md bg-background/40 text-[9px] uppercase tracking-widest text-muted-foreground border border-border/40">
             ⌘K
           </span>
         </button>
       </div>
 
-      {/* Slide-up panel */}
+      {/* Glassmorphism floating panel — not full-screen */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-background/70 backdrop-blur-sm animate-fade-in"
-          onClick={() => setOpen(false)}
+          className="absolute inset-0 z-50 flex items-end justify-center pointer-events-none animate-fade-in"
         >
+          {/* click-catcher (transparent, no dim) */}
+          <div
+            className="absolute inset-0 pointer-events-auto"
+            onClick={() => setOpen(false)}
+          />
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-6xl h-[80vh] mx-4 mb-4 rounded-2xl border border-border bg-surface-1 shadow-2xl flex flex-col overflow-hidden animate-scale-in"
-            style={{ boxShadow: "0 0 60px hsl(var(--neon) / 0.15), 0 20px 60px hsl(0 0% 0% / 0.6)" }}
+            className="pointer-events-auto relative w-[min(960px,calc(100%-2rem))] h-[min(560px,75%)] mb-5 rounded-2xl border border-white/10 bg-background/40 backdrop-blur-2xl flex flex-col overflow-hidden animate-scale-in"
+            style={{
+              boxShadow:
+                "0 0 0 1px hsl(var(--neon) / 0.08), 0 0 80px hsl(var(--neon) / 0.18), 0 25px 60px hsl(0 0% 0% / 0.55)",
+            }}
           >
             {/* Header */}
             <div className="h-14 px-5 flex items-center justify-between border-b border-border bg-surface-2/60 shrink-0">
