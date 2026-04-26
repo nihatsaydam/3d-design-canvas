@@ -101,7 +101,7 @@ export default function AIPanel() {
             }}
           >
             {/* Header */}
-            <div className="h-14 px-5 flex items-center justify-between border-b border-border bg-surface-2/60 shrink-0">
+            <div className="h-14 px-5 flex items-center justify-between border-b border-white/10 bg-white/5 shrink-0">
               <div className="flex items-center gap-3">
                 <div
                   className="h-8 w-8 rounded-lg flex items-center justify-center"
