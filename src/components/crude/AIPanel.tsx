@@ -211,8 +211,8 @@ export default function AIPanel() {
                 </div>
 
                 {/* Composer */}
-                <div className="p-4 border-t border-border bg-surface-2/40 shrink-0">
-                  <div className="flex items-end gap-2 p-2 rounded-xl bg-surface-1 border border-border focus-within:border-neon/50 transition-colors">
+                <div className="p-3 border-t border-white/10 bg-white/[0.03] shrink-0">
+                  <div className="flex items-end gap-2 p-2 rounded-xl bg-white/5 border border-white/10 focus-within:border-neon/50 transition-colors">
                     <button
                       title="Upload image"
                       className="h-9 w-9 shrink-0 rounded-lg flex items-center justify-center hover:bg-surface-2 text-muted-foreground hover:text-neon transition-colors"
