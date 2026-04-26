@@ -1,164 +1,152 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import charHD from "@/assets/hero-char-1.png";
 import charMesh from "@/assets/hero-char-2.png";
-
-const ROTATING = ["Worlds", "Creatures", "Vehicles", "Characters", "Props"];
+import heroBg from "@/assets/hero-bg.jpg";
 
 export default function Hero() {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % ROTATING.length), 2200);
-    return () => clearInterval(t);
-  }, []);
-
   return (
-    <section className="relative overflow-hidden bg-background">
-      {/* Soft ambient background */}
+    <section className="relative overflow-hidden">
+      {/* Dramatic backdrop with subtle concept-art bg */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(220_60%_96%),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(0_80%_96%),transparent_55%)]" />
-        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px]" />
+        <img
+          src={heroBg}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.18]"
+          width={1920}
+          height={1080}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(ellipse_at_top,hsl(220_60%_92%),transparent_70%)]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 md:pt-28">
+      <div className="mx-auto max-w-[1400px] px-6 pt-14 pb-28 md:pt-20">
         {/* Centered headline */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center max-w-4xl mx-auto"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface-1 text-xs font-mono uppercase tracking-widest text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            Engine v2 — AI Sculpt
-          </span>
-
-          <h1 className="mt-6 text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
-            Generate{" "}
-            <span className="relative inline-block align-baseline text-primary">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={ROTATING[idx]}
-                  initial={{ y: 30, opacity: 0, filter: "blur(8px)" }}
-                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ y: -30, opacity: 0, filter: "blur(8px)" }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="inline-block"
-                >
-                  {ROTATING[idx]}
-                </motion.span>
-              </AnimatePresence>
-            </span>{" "}
-            in 3D
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+            Generate Anything in 3D
           </h1>
-
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Your all-in-one AI 3D workspace. Sculpt, retopologize and publish
-            production-ready assets — from a single elegant studio.
+          <p className="mt-4 text-base md:text-lg text-muted-foreground">
+            Your All-in-One AI 3D Workspace
           </p>
         </motion.div>
 
-        {/* Two big showcase cards — Tripo3D style */}
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
-          }}
-          className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5"
-        >
-          {/* Card 1 — HD Model */}
+        {/* Two showcase cards — Tripo3D layout */}
+        <div className="mt-12 md:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
+          {/* ====== Card 1 — High Detail Model (BLUE) ====== */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
-            className="group relative overflow-hidden rounded-3xl min-h-[420px] md:min-h-[460px] shadow-[0_30px_80px_-30px_hsl(220_60%_30%/0.35)]"
-            style={{
-              background:
-                "linear-gradient(135deg, hsl(220 80% 58%) 0%, hsl(230 70% 38%) 100%)",
-            }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="relative pb-10"
           >
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay [background-image:radial-gradient(circle_at_30%_20%,white,transparent_55%)]" />
-            <img
-              src={charHD}
-              alt="High detail 3D character"
-              className="absolute -bottom-2 -left-4 md:-left-8 h-[88%] md:h-[95%] w-auto object-contain pointer-events-none drop-shadow-[0_30px_30px_rgba(0,0,0,0.45)] transition-transform duration-700 group-hover:scale-[1.03]"
-              loading="eager"
-            />
-            <div className="relative h-full flex flex-col justify-between p-7 md:p-9 ml-auto md:w-[55%]">
-              <div className="flex items-center gap-2 self-end text-white/90 text-xs font-mono uppercase tracking-widest">
-                <Sparkles className="h-3.5 w-3.5" />
-                Featured
-              </div>
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+            <div
+              className="relative rounded-[28px] overflow-hidden h-[360px] md:h-[420px] shadow-[0_30px_70px_-30px_hsl(220_70%_30%/0.45)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, hsl(218 85% 56%) 0%, hsl(228 75% 38%) 100%)",
+              }}
+            >
+              {/* soft light highlight */}
+              <div className="absolute inset-0 opacity-30 mix-blend-overlay [background-image:radial-gradient(circle_at_75%_15%,white,transparent_55%)]" />
+
+              {/* Text — left aligned */}
+              <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-center max-w-[58%]">
+                <h2 className="text-3xl md:text-[42px] font-bold text-white leading-[1.1]">
                   High Detail Model
                 </h2>
-                <p className="mt-3 text-white/80 text-sm md:text-base leading-relaxed">
-                  Up to 2M polygons for 3D printing & visual arts.
+                <p className="mt-4 text-white/85 text-sm md:text-[15px] leading-relaxed">
+                  Up to 2 Million Polygons for 3D Printing & Visual Arts
                 </p>
-                <Link to="/edit" className="inline-block mt-6">
-                  <Button
-                    size="lg"
-                    className="h-12 px-6 rounded-full bg-white text-[hsl(230_70%_38%)] hover:bg-white/95 gap-2 font-semibold shadow-lg"
-                  >
-                    Generate HD Model
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
               </div>
+
+              {/* Character — overflows on the right */}
+              <img
+                src={charHD}
+                alt="High detail 3D character"
+                className="pointer-events-none absolute -right-6 md:-right-10 -bottom-6 h-[115%] md:h-[125%] w-auto object-contain drop-shadow-[0_25px_30px_rgba(0,0,0,0.45)]"
+                loading="eager"
+              />
+            </div>
+
+            {/* CTA — overlapping bottom-center */}
+            <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 z-10">
+              <Link to="/edit">
+                <Button
+                  size="lg"
+                  className="h-14 px-8 rounded-full text-white gap-3 font-semibold text-base shadow-[0_18px_40px_-10px_hsl(220_80%_40%/0.6)] border-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, hsl(218 90% 58%), hsl(228 80% 42%))",
+                  }}
+                >
+                  Generate HD Model
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </motion.div>
 
-          {/* Card 2 — Smart Topology */}
+          {/* ====== Card 2 — Smart Topology (ORANGE) ====== */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
-            className="group relative overflow-hidden rounded-3xl min-h-[420px] md:min-h-[460px] shadow-[0_30px_80px_-30px_hsl(20_70%_30%/0.35)]"
-            style={{
-              background:
-                "linear-gradient(135deg, hsl(18 85% 58%) 0%, hsl(8 75% 42%) 100%)",
-            }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            className="relative pb-10"
           >
-            <div className="absolute inset-0 opacity-25 mix-blend-overlay [background-image:radial-gradient(circle_at_70%_20%,white,transparent_55%)]" />
-            <img
-              src={charMesh}
-              alt="3D wireframe topology"
-              className="absolute -bottom-2 -right-4 md:-right-8 h-[88%] md:h-[95%] w-auto object-contain pointer-events-none drop-shadow-[0_30px_30px_rgba(0,0,0,0.4)] transition-transform duration-700 group-hover:scale-[1.03]"
-              loading="lazy"
-            />
-            <div className="relative h-full flex flex-col justify-between p-7 md:p-9 md:w-[55%]">
-              <div className="flex items-center gap-2 text-white/90 text-xs font-mono uppercase tracking-widest">
-                <Sparkles className="h-3.5 w-3.5" />
-                Production Ready
-              </div>
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+            <div
+              className="relative rounded-[28px] overflow-hidden h-[360px] md:h-[420px] shadow-[0_30px_70px_-30px_hsl(20_70%_30%/0.45)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, hsl(20 85% 55%) 0%, hsl(12 80% 38%) 100%)",
+              }}
+            >
+              <div className="absolute inset-0 opacity-25 mix-blend-overlay [background-image:radial-gradient(circle_at_25%_15%,white,transparent_55%)]" />
+
+              {/* Text — left aligned */}
+              <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-center max-w-[58%]">
+                <h2 className="text-3xl md:text-[42px] font-bold text-white leading-[1.1]">
                   Smart Topology Mesh
                 </h2>
-                <p className="mt-3 text-white/85 text-sm md:text-base leading-relaxed">
-                  ~2s clean retopology for games & web apps.
+                <p className="mt-4 text-white/85 text-sm md:text-[15px] leading-relaxed">
+                  ~2s | Clean Topology for Games & Web Applications
                 </p>
-                <Link to="/edit" className="inline-block mt-6">
-                  <Button
-                    size="lg"
-                    className="h-12 px-6 rounded-full bg-white text-[hsl(8_75%_42%)] hover:bg-white/95 gap-2 font-semibold shadow-lg"
-                  >
-                    Generate Smart Mesh
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
               </div>
+
+              {/* Character — overflows on the right */}
+              <img
+                src={charMesh}
+                alt="3D wireframe topology"
+                className="pointer-events-none absolute -right-6 md:-right-10 -bottom-6 h-[115%] md:h-[125%] w-auto object-contain drop-shadow-[0_25px_30px_rgba(0,0,0,0.4)]"
+                loading="lazy"
+              />
+            </div>
+
+            {/* CTA — overlapping bottom-center */}
+            <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 z-10">
+              <Link to="/edit">
+                <Button
+                  size="lg"
+                  className="h-14 px-8 rounded-full text-white gap-3 font-semibold text-base shadow-[0_18px_40px_-10px_hsl(20_80%_40%/0.6)] border-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, hsl(20 90% 58%), hsl(12 85% 42%))",
+                  }}
+                >
+                  Generate Smart Mesh
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
