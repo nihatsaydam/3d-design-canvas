@@ -172,18 +172,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-8 relative mx-auto max-w-6xl"
+          className="mt-6 relative mx-auto max-w-6xl"
         >
-          <div className="relative rounded-3xl overflow-hidden border border-border bg-card shadow-[0_30px_80px_-30px_hsl(230_35%_15%/0.25)]">
+          <div className="relative rounded-3xl overflow-hidden border border-border bg-card shadow-[0_30px_80px_-30px_hsl(170_30%_15%/0.3)]">
             <img
               src={showcase}
               alt="Showcase of 3D models created with CRUDE"
               width={1920}
               height={704}
-              className="w-full h-[28vh] min-h-[180px] max-h-[320px] object-cover"
+              className="w-full h-[22vh] min-h-[160px] max-h-[260px] object-cover"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </motion.div>
       </div>
