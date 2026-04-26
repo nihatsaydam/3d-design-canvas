@@ -146,44 +146,44 @@
    Editor stays dark.
    ============================================ */
 .theme-site {
-  /* Warm sand cream + deep indigo ink — Linear/Notion vibe */
-  --background: 38 35% 96%;
-  --foreground: 230 35% 12%;
+  /* Soft sage / muted green-gray — calm, distinctive, not white */
+  --background: 140 14% 92%;
+  --foreground: 170 25% 12%;
 
-  --surface-0: 40 40% 98%;
-  --surface-1: 38 30% 94%;
-  --surface-2: 36 24% 90%;
-  --surface-3: 34 20% 85%;
+  --surface-0: 140 16% 95%;
+  --surface-1: 140 14% 89%;
+  --surface-2: 140 12% 85%;
+  --surface-3: 140 10% 80%;
 
-  --card: 40 40% 99%;
-  --card-foreground: 230 35% 12%;
+  --card: 140 18% 96%;
+  --card-foreground: 170 25% 12%;
 
-  --popover: 40 40% 99%;
-  --popover-foreground: 230 35% 12%;
+  --popover: 140 18% 96%;
+  --popover-foreground: 170 25% 12%;
 
-  /* Brand: deep coral/terracotta — warmer, less aggressive than pure red */
-  --primary: 12 75% 50%;
-  --primary-foreground: 40 40% 98%;
+  /* Brand: warm terracotta — pops beautifully on sage */
+  --primary: 14 72% 48%;
+  --primary-foreground: 140 16% 96%;
   --primary-glow: 18 85% 60%;
 
-  --secondary: 38 24% 92%;
-  --secondary-foreground: 230 35% 16%;
+  --secondary: 140 12% 87%;
+  --secondary-foreground: 170 25% 16%;
 
-  --muted: 38 22% 92%;
-  --muted-foreground: 230 12% 42%;
+  --muted: 140 12% 88%;
+  --muted-foreground: 170 10% 38%;
 
-  --accent: 38 24% 90%;
-  --accent-foreground: 230 35% 16%;
+  --accent: 140 12% 86%;
+  --accent-foreground: 170 25% 16%;
 
-  --neon: 160 60% 38%;
+  --neon: 160 60% 36%;
   --neon-foreground: 0 0% 100%;
 
   --destructive: 0 70% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 35 18% 86%;
-  --input: 35 18% 89%;
-  --ring: 12 75% 50%;
+  --border: 140 10% 80%;
+  --input: 140 10% 84%;
+  --ring: 14 72% 48%;
 
   color-scheme: light;
 }
