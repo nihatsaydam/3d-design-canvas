@@ -35,12 +35,12 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-background">
       {/* Soft ambient backdrop */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(38_60%_92%),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(12_70%_92%),transparent_55%)]" />
-        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(140_25%_88%),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(14_60%_88%),transparent_55%)]" />
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px]" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 pt-10 pb-6 md:pt-14 md:pb-8">
+      <div className="mx-auto max-w-6xl px-6 pt-8 pb-4 md:pt-10 md:pb-6">
         {/* Centered headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
