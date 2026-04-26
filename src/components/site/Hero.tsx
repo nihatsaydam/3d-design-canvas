@@ -22,23 +22,25 @@ export default function Hero() {
         <img
           src={heroBg}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          className="absolute inset-0 h-full w-full object-cover"
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.18),transparent_55%)]" />
+        {/* Cinematic gradient overlays for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background)/0.55)_60%,hsl(var(--background))_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.18),transparent_55%)]" />
 
         {/* Floating animated orbs */}
         <motion.div
           aria-hidden
-          className="absolute top-1/4 left-[10%] h-72 w-72 rounded-full bg-primary/20 blur-3xl"
+          className="absolute top-1/3 left-[15%] h-72 w-72 rounded-full bg-primary/20 blur-3xl"
           animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           aria-hidden
-          className="absolute bottom-1/4 right-[12%] h-80 w-80 rounded-full bg-neon/10 blur-3xl"
+          className="absolute bottom-1/4 right-[15%] h-80 w-80 rounded-full bg-neon/10 blur-3xl"
           animate={{ y: [0, -40, 0], x: [0, -25, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -46,7 +48,7 @@ export default function Hero() {
         {/* Subtle grid */}
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:48px_48px]"
+          className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:48px_48px]"
         />
       </div>
 
@@ -55,7 +57,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-3xl"
+          className="mx-auto max-w-4xl text-center flex flex-col items-center"
         >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-xs font-mono uppercase tracking-widest text-primary">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
@@ -86,7 +88,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed"
+            className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto"
           >
             CRUDE 3D is an AI-native sculpting & rendering studio. Generate concept-ready
             assets in seconds, refine them with a real-time engine, and publish your gallery
@@ -97,7 +99,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
             <Link to="/edit">
               <Button
@@ -117,7 +119,7 @@ export default function Hero() {
                 Browse Gallery
               </Button>
             </Link>
-            <button className="h-12 inline-flex items-center gap-2 px-3 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <button className="h-12 inline-flex items-center gap-2 px-3 text-sm text-muted-foreground hover:text-foreground transition-colors group">
               <span className="grid place-items-center h-9 w-9 rounded-full border border-border bg-surface-1 group-hover:bg-surface-2">
                 <Play className="h-3.5 w-3.5 fill-foreground" />
               </span>
@@ -133,7 +135,7 @@ export default function Hero() {
               hidden: {},
               show: { transition: { staggerChildren: 0.08, delayChildren: 0.4 } },
             }}
-            className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl"
+            className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl w-full"
           >
             {[
               { icon: Wand2, label: "Text → 3D", sub: "Prompt to mesh in <30s" },
@@ -147,7 +149,7 @@ export default function Hero() {
                   show: { opacity: 1, y: 0 },
                 }}
                 whileHover={{ y: -4 }}
-                className="rounded-xl border border-border bg-surface-1/70 backdrop-blur-sm p-4 hover:border-primary/40 transition-colors"
+                className="rounded-xl border border-border bg-surface-1/70 backdrop-blur-sm p-4 text-left hover:border-primary/40 transition-colors"
               >
                 <f.icon className="h-5 w-5 text-primary" />
                 <div className="mt-2 text-sm font-semibold text-foreground">{f.label}</div>
