@@ -12,7 +12,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-background text-foreground flex flex-col">
+    <div className="theme-site min-h-screen w-full bg-background text-foreground flex flex-col">
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
