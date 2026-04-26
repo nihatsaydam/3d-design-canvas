@@ -2,95 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* CRUDE 3D - Design System
+   Dark professional 3D editor look, ZBrush-inspired
+   All colors HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Surfaces */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 88%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --surface-0: 0 0% 5%;
+    --surface-1: 0 0% 10%;
+    --surface-2: 0 0% 14%;
+    --surface-3: 0 0% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 90%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Brand red */
+    --primary: 0 85% 55%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 95% 65%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 88%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 55%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 92%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Neon green for AI panel */
+    --neon: 90 95% 60%;
+    --neon-foreground: 0 0% 8%;
 
-    --radius: 0.5rem;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --sidebar-background: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 16%;
+    --ring: 0 85% 55%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --radius: 0.65rem;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Gradients */
+    --gradient-topbar: linear-gradient(180deg, hsl(0 0% 9%), hsl(0 0% 5%));
+    --gradient-button: linear-gradient(180deg, hsl(0 0% 22%), hsl(0 0% 14%));
+    --gradient-button-active: linear-gradient(180deg, hsl(0 90% 60%), hsl(0 85% 45%));
+    --gradient-viewport: radial-gradient(ellipse at center, hsl(0 0% 14%), hsl(0 0% 6%) 80%);
+    --gradient-neon: linear-gradient(180deg, hsl(0 0% 22%), hsl(0 0% 12%));
 
+    /* Shadows */
+    --shadow-panel: 0 1px 0 hsl(0 0% 25% / 0.4) inset, 0 -1px 0 hsl(0 0% 0% / 0.6) inset, 0 4px 12px hsl(0 0% 0% / 0.5);
+    --shadow-button: 0 1px 0 hsl(0 0% 30% / 0.5) inset, 0 -1px 2px hsl(0 0% 0% / 0.6) inset, 0 2px 4px hsl(0 0% 0% / 0.4);
+    --shadow-glow-red: 0 0 24px hsl(0 95% 55% / 0.35);
+    --shadow-glow-neon: 0 0 18px hsl(90 95% 60% / 0.4);
+
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 9%;
+    --sidebar-foreground: 0 0% 80%;
+    --sidebar-primary: 0 85% 55%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 0 85% 55%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Same dark theme - app is dark by default */
   }
 }
 
@@ -99,7 +86,56 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html, body, #root {
+    @apply h-full;
   }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .panel {
+    background: hsl(var(--surface-1));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-panel);
+  }
+
+  .tool-btn {
+    background: var(--gradient-button);
+    box-shadow: var(--shadow-button);
+    border: 1px solid hsl(0 0% 22%);
+    transition: var(--transition-smooth);
+  }
+
+  .tool-btn:hover {
+    background: linear-gradient(180deg, hsl(0 0% 26%), hsl(0 0% 16%));
+    border-color: hsl(0 0% 30%);
+  }
+
+  .tool-btn-active {
+    background: var(--gradient-button-active);
+    border-color: hsl(0 95% 65%);
+    box-shadow: var(--shadow-glow-red), var(--shadow-button);
+  }
+
+  .label-red {
+    color: hsl(var(--primary));
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .label-neon {
+    color: hsl(var(--neon));
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 10px hsl(var(--neon) / 0.5);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: hsl(var(--surface-0)); }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--surface-3)); border-radius: 3px; }
 }
