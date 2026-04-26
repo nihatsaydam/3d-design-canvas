@@ -35,9 +35,9 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-background">
       {/* Soft ambient backdrop */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(140_25%_88%),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(14_60%_88%),transparent_55%)]" />
-        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--card)),transparent_58%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(var(--primary-glow)/0.24),transparent_55%)]" />
+        <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px]" />
       </div>
 
       <div className="mx-auto max-w-6xl px-6 pt-8 pb-4 md:pt-10 md:pb-6">
@@ -84,7 +84,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="mt-6 mx-auto max-w-3xl"
         >
-          <div className="relative flex items-stretch p-1.5 rounded-2xl border border-border bg-card shadow-[0_10px_30px_-12px_hsl(230_35%_15%/0.15)]">
+          <div className="relative flex items-stretch p-1.5 rounded-2xl border border-border bg-card shadow-[0_10px_30px_-12px_hsl(var(--foreground)/0.2)]">
             {/* Sliding indicator */}
             <motion.div
               layout
@@ -174,7 +174,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-6 relative mx-auto max-w-6xl"
         >
-          <div className="relative rounded-3xl overflow-hidden border border-border bg-card shadow-[0_30px_80px_-30px_hsl(170_30%_15%/0.3)]">
+          <div className="relative rounded-3xl overflow-hidden border border-border bg-card shadow-[0_30px_80px_-30px_hsl(var(--foreground)/0.34)]">
             <img
               src={showcase}
               alt="Showcase of 3D models created with CRUDE"

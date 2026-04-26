@@ -146,33 +146,33 @@
    Editor stays dark.
    ============================================ */
 .theme-site {
-  /* Soft sage / muted green-gray — calm, distinctive, not white */
-  --background: 140 14% 92%;
-  --foreground: 170 25% 12%;
+  /* Visible sage / clay — elegant, calm, clearly not white */
+  --background: 142 18% 82%;
+  --foreground: 166 28% 11%;
 
-  --surface-0: 140 16% 95%;
-  --surface-1: 140 14% 89%;
-  --surface-2: 140 12% 85%;
-  --surface-3: 140 10% 80%;
+  --surface-0: 142 18% 78%;
+  --surface-1: 142 17% 86%;
+  --surface-2: 142 14% 76%;
+  --surface-3: 142 12% 68%;
 
-  --card: 140 18% 96%;
-  --card-foreground: 170 25% 12%;
+  --card: 142 21% 90%;
+  --card-foreground: 166 28% 11%;
 
-  --popover: 140 18% 96%;
-  --popover-foreground: 170 25% 12%;
+  --popover: 142 21% 90%;
+  --popover-foreground: 166 28% 11%;
 
   /* Brand: warm terracotta — pops beautifully on sage */
   --primary: 14 72% 48%;
-  --primary-foreground: 140 16% 96%;
+  --primary-foreground: 38 30% 96%;
   --primary-glow: 18 85% 60%;
 
-  --secondary: 140 12% 87%;
+  --secondary: 142 14% 74%;
   --secondary-foreground: 170 25% 16%;
 
-  --muted: 140 12% 88%;
-  --muted-foreground: 170 10% 38%;
+  --muted: 142 12% 78%;
+  --muted-foreground: 168 12% 28%;
 
-  --accent: 140 12% 86%;
+  --accent: 142 12% 73%;
   --accent-foreground: 170 25% 16%;
 
   --neon: 160 60% 36%;
@@ -181,15 +181,18 @@
   --destructive: 0 70% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 140 10% 80%;
-  --input: 140 10% 84%;
+  --border: 142 11% 65%;
+  --input: 142 12% 72%;
   --ring: 14 72% 48%;
 
   color-scheme: light;
 }
 
-.theme-site body,
-body:has(.theme-site) {
+.theme-site,
+html.theme-site,
+body.theme-site,
+body:has(.theme-site),
+body.theme-site #root {
   background: hsl(var(--background));
 }
 
