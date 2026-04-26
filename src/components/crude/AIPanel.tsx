@@ -54,13 +54,17 @@ export default function AIPanel() {
 
   // Initialize position to right side when opening
   useEffect(() => {
-    if (open && pos === null && panelRef.current?.parentElement) {
-      const parent = panelRef.current.parentElement.getBoundingClientRect();
-      setPos({
-        x: Math.max(8, parent.width - size.w - 16),
-        y: Math.max(8, parent.height - size.h - 80),
-      });
-    }
+    if (!open || pos !== null) return;
+    const parentEl =
+      (panelRef.current?.parentElement as HTMLElement | null) ??
+      (document.querySelector("main") as HTMLElement | null);
+    const rect = parentEl?.getBoundingClientRect();
+    const pw = rect?.width ?? window.innerWidth;
+    const ph = rect?.height ?? window.innerHeight;
+    setPos({
+      x: Math.max(8, pw - size.w - 16),
+      y: Math.max(8, ph - size.h - 100),
+    });
   }, [open, pos, size.w, size.h]);
 
   useEffect(() => {
