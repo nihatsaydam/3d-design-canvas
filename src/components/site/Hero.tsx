@@ -52,19 +52,14 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 pb-32 md:pt-32 md:pb-40">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-14 md:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mx-auto max-w-4xl text-center flex flex-col items-center"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-xs font-mono uppercase tracking-widest text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            New — Engine v2 with AI Sculpt
-          </span>
-
-          <h1 className="mt-6 text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
             Sculpt{" "}
             <span className="relative inline-block align-baseline text-primary">
               <AnimatePresence mode="wait">
