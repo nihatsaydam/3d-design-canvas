@@ -18,7 +18,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* BG */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={heroBg}
           alt=""
@@ -27,8 +27,8 @@ export default function Hero() {
           height={1080}
         />
         {/* Cinematic gradient overlays for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background)/0.55)_60%,hsl(var(--background))_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/10 to-background/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background)/0.35)_70%,hsl(var(--background)/0.85)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.18),transparent_55%)]" />
 
         {/* Floating animated orbs */}
